@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#17120f">
     <title>Needle &amp; Groove — Discos de Vinil</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="intro" id="intro" aria-label="Needle and Groove, carregando a loja" role="status">
+        <div class="intro-disco" aria-hidden="true"><span></span></div>
+        <p>Needle <span>&amp; Groove</span></p>
+    </div>
+    <div class="site-conteudo" id="siteConteudo">
     <header class="header">
         <a class="logo" href="#inicio" aria-label="Needle & Groove">Needle <span>&amp; Groove</span></a>
         <nav aria-label="Navegação principal">
@@ -60,12 +65,10 @@
     <div id="modalCompra" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloCompra">
         <div class="modal-content">
             <button class="fechar" type="button" onclick="fecharModalCompra()" aria-label="Fechar">×</button>
-            <span class="modal-icon">♫</span>
             <h2 id="tituloCompra">Comprar disco</h2>
-            <p id="nomeDiscoCompra"></p>
             <div class="ingressos-info"><span>Disponível em estoque</span><strong id="disponiveisCompra">0</strong></div>
             <div class="campo"><label for="quantidadeCompra">Quantidade</label><input type="number" id="quantidadeCompra" min="1" value="1"></div>
-            <button class="btn-comprar" type="button" onclick="confirmarCompra()">♫ Confirmar compra</button>
+            <button class="btn-comprar" type="button" onclick="confirmarCompra()">Confirmar compra</button>
         </div>
     </div>
 
@@ -74,6 +77,7 @@
         <p>Boa música merece ser ouvida em vinil.</p>
         <p class="copyright">© 2026 Needle &amp; Groove — Todos os direitos reservados</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
+    </div>
 </body>
 </html>
