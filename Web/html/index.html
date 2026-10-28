@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#17120f">
     <title>Needle &amp; Groove — Discos de Vinil</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <header class="header">
@@ -13,6 +13,9 @@
         <nav aria-label="Navegação principal">
             <a href="#discos">Discos</a>
             <a href="#cadastro">Cadastrar disco</a>
+            <a href="#historico">Histórico</a>
+            <span class="usuario-logado">Olá, <strong id="nomeUsuario"></strong></span>
+            <a href="#" id="btnSair">Sair</a>
         </nav>
     </header>
 
@@ -31,6 +34,7 @@
                 <div><span class="mini-title">SELEÇÃO DA LOJA</span><h2>Discos em destaque</h2></div>
                 <span id="contadorDiscos"></span>
             </div>
+            <div class="busca"><input type="search" id="campoBusca" placeholder="Buscar por título, artista ou gênero..."></div>
             <div id="listaDiscos" class="filmes-container"></div>
         </section>
 
@@ -38,21 +42,39 @@
             <div class="cadastro-container">
                 <div class="cadastro-info">
                     <span class="mini-title">ACERVO</span>
-                    <h2>Adicionar um disco</h2>
-                    <p>Inclua um álbum no catálogo com as informações, a capa, o preço e a quantidade disponível.</p>
+                    <h2 id="tituloFormulario">Adicionar um disco</h2>
+                    <p>Inclua um álbum no catálogo com as informações, os preços e a quantidade disponível.</p>
                     <div class="info-box">♫ <span>O disco cadastrado aparece automaticamente na vitrine.</span></div>
                 </div>
                 <form id="formDisco" class="form-filme">
-                    <div class="campo"><label for="nome">Nome do álbum</label><input type="text" id="nome" placeholder="Ex.: Clube da Esquina" required></div>
-                    <div class="campo"><label for="artista">Artista ou banda</label><input type="text" id="artista" placeholder="Ex.: Milton Nascimento e Lô Borges" required></div>
-                    <div class="campo"><label for="descricao">Sobre o disco</label><textarea id="descricao" placeholder="Uma breve descrição do álbum..." required></textarea></div>
-                    <div class="campo"><label for="capa">URL da capa</label><input type="url" id="capa" placeholder="https://site.com/capa.jpg" required><small>Cole o endereço de uma imagem do disco.</small></div>
+                    <div class="campo"><label for="titulo">Título do álbum</label><input type="text" id="titulo" maxlength="150" placeholder="Ex.: Clube da Esquina" required></div>
+                    <div class="campo"><label for="artista">Artista ou banda</label><input type="text" id="artista" maxlength="100" placeholder="Ex.: Milton Nascimento e Lô Borges" required></div>
+                    <div class="campo"><label for="genero">Gênero</label><input type="text" id="genero" maxlength="50" placeholder="Ex.: MPB" required></div>
                     <div class="form-linha">
-                        <div class="campo"><label for="preco">Preço (R$)</label><input type="number" id="preco" min="0.01" step="0.01" placeholder="89,90" required></div>
-                        <div class="campo"><label for="estoque">Unidades em estoque</label><input type="number" id="estoque" min="0" step="1" placeholder="Ex.: 10" required></div>
+                        <div class="campo"><label for="precoCusto">Preço de custo (R$)</label><input type="number" id="precoCusto" min="0" step="0.01" placeholder="80,00" required></div>
+                        <div class="campo"><label for="precoVenda">Preço de venda (R$)</label><input type="number" id="precoVenda" min="0" step="0.01" placeholder="129,90" required></div>
                     </div>
-                    <button type="submit" class="btn-cadastrar">＋ Cadastrar disco</button>
+                    <div class="form-linha">
+                        <div class="campo"><label for="estoque">Unidades em estoque</label><input type="number" id="estoque" min="0" step="1" placeholder="Ex.: 10" required></div>
+                        <div class="campo"><label for="estoqueMinimo">Estoque mínimo</label><input type="number" id="estoqueMinimo" min="0" step="1" placeholder="Ex.: 3" required></div>
+                    </div>
+                    <button type="submit" id="btnSalvarDisco" class="btn-cadastrar">＋ Cadastrar disco</button>
+                    <button type="button" id="btnCancelarEdicao" class="btn-excluir" hidden>Cancelar edição</button>
                 </form>
+            </div>
+        </section>
+
+        <section id="historico" class="section">
+            <div class="section-title">
+                <div><span class="mini-title">CONTROLE</span><h2>Histórico de movimentações</h2></div>
+            </div>
+            <div class="tabela-container">
+                <table class="tabela">
+                    <thead>
+                        <tr><th>Data</th><th>Disco</th><th>Tipo</th><th>Qtd.</th><th>Usuário</th><th>Observação</th></tr>
+                    </thead>
+                    <tbody id="listaHistorico"></tbody>
+                </table>
             </div>
         </section>
     </main>
@@ -61,11 +83,20 @@
         <div class="modal-content">
             <button class="fechar" type="button" onclick="fecharModalCompra()" aria-label="Fechar">×</button>
             <span class="modal-icon">♫</span>
-            <h2 id="tituloCompra">Comprar disco</h2>
+            <h2 id="tituloCompra">Movimentar estoque</h2>
             <p id="nomeDiscoCompra"></p>
             <div class="ingressos-info"><span>Disponível em estoque</span><strong id="disponiveisCompra">0</strong></div>
-            <div class="campo"><label for="quantidadeCompra">Quantidade</label><input type="number" id="quantidadeCompra" min="1" value="1"></div>
-            <button class="btn-comprar" type="button" onclick="confirmarCompra()">♫ Confirmar compra</button>
+            <div class="campo">
+                <label for="tipoMovimentacao">Tipo de movimentação</label>
+                <select id="tipoMovimentacao">
+                    <option value="saida">Venda (saída)</option>
+                    <option value="entrada">Reposição / compra (entrada)</option>
+                </select>
+            </div>
+            <div class="campo"><label for="quantidadeCompra">Quantidade</label><input type="number" id="quantidadeCompra" min="1" step="1" value="1"></div>
+            <div class="campo"><label for="dataMovimentacao">Data</label><input type="date" id="dataMovimentacao"></div>
+            <div class="campo"><label for="observacaoMovimentacao">Observação</label><input type="text" id="observacaoMovimentacao" maxlength="250" placeholder="Ex.: Venda no balcão"></div>
+            <button class="btn-comprar" type="button" onclick="confirmarMovimentacao()">♫ Confirmar movimentação</button>
         </div>
     </div>
 
@@ -74,6 +105,6 @@
         <p>Boa música merece ser ouvida em vinil.</p>
         <p class="copyright">© 2026 Needle &amp; Groove — Todos os direitos reservados</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

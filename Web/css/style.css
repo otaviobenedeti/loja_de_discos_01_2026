@@ -788,3 +788,52 @@ footer .logo {
 .estado-vazio h3 { color: white; margin: 12px 0 8px; }
 .logo { color: white; text-decoration: none; }
 .logo span { color: #c28b62; }
+
+/* ===== Acréscimos para integração com a API ===== */
+.campo select {
+    width: 100%;
+    background: #080808;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 13px;
+    outline: none;
+    font-family: inherit;
+}
+.campo select:focus { border-color: #9a6545; }
+
+.header nav .usuario-logado { color: #ccc; font-size: 14px; margin-left: 20px; }
+.header nav .usuario-logado strong { color: #9a6545; }
+
+.busca { margin-bottom: 24px; }
+.busca input {
+    width: 100%;
+    background: #080808;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 13px;
+    outline: none;
+    font-family: inherit;
+}
+.busca input:focus { border-color: #9a6545; }
+
+.estoque-baixo { color: #e0a040; font-weight: bold; }
+
+.tabela-container { overflow-x: auto; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabela th, .tabela td { text-align: left; padding: 12px; border-bottom: 1px solid #242424; }
+.tabela th { color: #9a6545; }
+
+.login-page { display: flex; justify-content: center; padding: 60px 20px; min-height: 70vh; }
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    height: fit-content;
+    background: #111;
+    border: 1px solid #242424;
+    border-radius: 8px;
+    padding: 32px;
+}
+.login-box h2 { margin: 8px 0 24px; }
+.mensagem-erro { color: #e07a5f; min-height: 20px; margin-bottom: 12px; font-size: 14px; }

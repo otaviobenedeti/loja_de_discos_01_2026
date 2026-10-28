@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#17120f">
+    <title>Entrar — Needle &amp; Groove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a class="logo" href="login.html" aria-label="Needle & Groove">Needle <span>&amp; Groove</span></a>
+    </header>
+
+    <main class="login-page">
+        <form id="formLogin" class="login-box">
+            <span class="mini-title">ÁREA RESTRITA</span>
+            <h2>Entrar no sistema</h2>
+            <div class="campo"><label for="email">E-mail</label><input type="email" id="email" placeholder="voce@needlegroove.com" required></div>
+            <div class="campo"><label for="senha">Senha</label><input type="password" id="senha" placeholder="Sua senha" required></div>
+            <p id="mensagemLogin" class="mensagem-erro" role="alert"></p>
+            <button type="submit" class="btn-cadastrar">Entrar</button>
+        </form>
+    </main>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>
