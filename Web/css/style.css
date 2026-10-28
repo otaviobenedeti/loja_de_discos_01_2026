@@ -3,779 +3,626 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #080808;
     color: white;
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
 .header {
     width: 100%;
     height: 75px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 7%;
-
     background: #050505;
-
     border-bottom: 1px solid #222;
-
     position: sticky;
     top: 0;
-
     z-index: 1000;
 }
-
 .logo {
     display: flex;
     align-items: center;
     gap: 8px;
-
     font-size: 25px;
     font-weight: bold;
 }
-
 .logo span span {
     color: #9a6545;
 }
-
 .header nav {
     display: flex;
     gap: 30px;
 }
-
 .header nav a {
     color: #ccc;
     text-decoration: none;
-
     font-size: 15px;
-
     transition: 0.3s;
 }
-
 .header nav a:hover {
     color: #9a6545;
 }
-
-
-/* =========================
-   BANNER
-========================= */
-
 .banner {
     min-height: 520px;
-
     display: flex;
     align-items: center;
-
     padding: 70px 7%;
-
     background:
         linear-gradient(90deg,
             #050505 15%,
             rgba(5, 5, 5, 0.88) 45%,
             rgba(5, 5, 5, 0.3) 100%),
         url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1800&q=80");
-
     background-size: cover;
     background-position: center;
 }
-
 .banner-content {
     max-width: 600px;
 }
-
 .tag,
 .mini-title {
     color: #9a6545;
-
     font-size: 13px;
     font-weight: bold;
-
     letter-spacing: 2px;
 }
-
 .banner h1 {
     font-size: clamp(42px, 6vw, 75px);
-
     line-height: 1.05;
-
     margin: 18px 0;
 }
-
 .banner p {
     color: #ccc;
-
     font-size: 18px;
-
     line-height: 1.6;
-
     max-width: 500px;
-
     margin-bottom: 30px;
 }
-
 .btn-principal {
     display: inline-block;
-
     padding: 14px 28px;
-
     background: #9a6545;
-
     color: white;
-
     text-decoration: none;
-
     border-radius: 5px;
-
     font-weight: bold;
-
     transition: 0.3s;
 }
-
 .btn-principal:hover {
     background: #70452f;
-
     transform: translateY(-2px);
 }
-
-
-/* =========================
-   SEÇÃO FILMES
-========================= */
-
 .section {
     padding: 80px 7%;
 }
-
 .section-title {
     display: flex;
     justify-content: space-between;
     align-items: end;
-
     margin-bottom: 35px;
 }
-
 .section-title h2 {
     font-size: 35px;
-
     margin-top: 8px;
 }
-
 #contadorFilmes {
     color: #888;
-
     font-size: 14px;
 }
-
-
-/* =========================
-   CARDS
-========================= */
-
 .filmes-container {
     display: grid;
-
     grid-template-columns:
         repeat(auto-fill, minmax(210px, 1fr));
-
     gap: 25px;
 }
-
 .filme-card {
     background: #121212;
-
     border-radius: 10px;
-
     overflow: hidden;
-
     border: 1px solid #222;
-
     transition: 0.3s;
-
     position: relative;
 }
-
 .filme-card:hover {
     transform: translateY(-8px);
-
     border-color: #9a6545;
-
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5);
 }
-
 .capa {
-    width: 100%;
-
-    height: 310px;
-
+    position: relative;
+    z-index: 1;
+    width: 56%;
+    aspect-ratio: 1;
     object-fit: cover;
-
-    display: block;
+    border-radius: 50%;
 }
-
+.disco-capa {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 310px;
+}
+.disco-capa::before {
+    content: "";
+    position: absolute;
+    width: min(100%, 310px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #17110d 0 2px, #a7754f 3px 27%, #17110d 28% 30%, transparent 31%),
+        repeating-radial-gradient(circle, #171514 0 3px, #302d2a 4px 5px, #111 6px 9px);
+    border: 1px solid #49382d;
+    box-shadow: 0 12px 24px #0008;
+}
 .filme-info {
     padding: 18px;
 }
-
 .filme-info h3 {
     font-size: 19px;
-
     margin-bottom: 10px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .descricao {
     color: #999;
-
     font-size: 13px;
-
     line-height: 1.5;
-
     height: 40px;
-
     overflow: hidden;
-
     margin-bottom: 15px;
 }
-
 .ingressos {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 15px;
-
     font-size: 13px;
 }
-
 .ingressos strong {
     color: #5bd46d;
 }
-
 .ingressos.esgotado strong {
     color: #9a6545;
 }
-
 .botoes {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 8px;
 }
-
 .btn-trailer,
 .btn-ingresso {
     border: none;
-
     padding: 11px 5px;
-
     border-radius: 5px;
-
     cursor: pointer;
-
     font-weight: bold;
-
     font-size: 12px;
-
     transition: 0.3s;
 }
-
 .btn-trailer {
     background: #252525;
-
     color: white;
 }
-
 .btn-trailer:hover {
     background: #333;
 }
-
 .btn-ingresso {
     background: #9a6545;
-
     color: white;
 }
-
 .btn-ingresso:hover {
     background: #70452f;
 }
-
 .btn-ingresso:disabled {
     background: #333;
-
     color: #777;
-
     cursor: not-allowed;
 }
-
 .btn-excluir {
     width: 100%;
-
     margin-top: 8px;
-
     padding: 8px;
-
     border: 1px solid #604332;
-
     background: transparent;
-
     color: #c28b62;
-
     border-radius: 5px;
-
     cursor: pointer;
 }
-
 .btn-excluir:hover {
     background: #2b1d16;
 }
-
-
-/* =========================
-   CADASTRO
-========================= */
-
 .cadastro-section {
     background: #0d0d0d;
-
     padding: 80px 7%;
-
     border-top: 1px solid #222;
 }
-
 .cadastro-container {
     max-width: 1100px;
-
     margin: auto;
-
     display: grid;
-
     grid-template-columns: 0.8fr 1.2fr;
-
     gap: 70px;
-
     align-items: start;
 }
-
 .cadastro-info h2 {
     font-size: 40px;
-
     margin: 12px 0 20px;
 }
-
 .cadastro-info p {
     color: #999;
-
     line-height: 1.7;
 }
-
 .info-box {
     margin-top: 30px;
-
     padding: 18px;
-
     background: #161616;
-
     border-left: 3px solid #9a6545;
-
     color: #ccc;
-
     line-height: 1.5;
 }
-
-
-/* FORM */
-
 .form-filme {
     background: #121212;
-
     padding: 30px;
-
     border-radius: 10px;
-
     border: 1px solid #242424;
 }
-
 .campo {
     margin-bottom: 20px;
 }
-
 .campo label {
     display: block;
-
     margin-bottom: 8px;
-
     font-size: 14px;
-
     font-weight: bold;
 }
-
 .campo input,
 .campo textarea {
     width: 100%;
-
     background: #080808;
-
     color: white;
-
     border: 1px solid #333;
-
     border-radius: 5px;
-
     padding: 13px;
-
     outline: none;
-
     font-family: inherit;
 }
-
 .campo input:focus,
 .campo textarea:focus {
     border-color: #9a6545;
 }
-
 .campo textarea {
     min-height: 90px;
-
     resize: vertical;
 }
-
 .campo small {
     display: block;
-
     color: #777;
-
     margin-top: 6px;
 }
-
 .btn-cadastrar {
     width: 100%;
-
     padding: 14px;
-
     border: none;
-
     border-radius: 5px;
-
     background: #9a6545;
-
     color: white;
-
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
-
 .btn-cadastrar:hover {
     background: #70452f;
 }
-
-
-/* =========================
-   MODAL
-========================= */
-
 .modal {
     display: none;
-
     position: fixed;
-
     z-index: 2000;
-
     inset: 0;
-
     background: rgba(0, 0, 0, 0.85);
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
 }
-
 .modal.ativo {
     display: flex;
 }
-
 .modal-content {
     width: 100%;
-
     max-width: 430px;
-
     background: #151515;
-
     border: 1px solid #333;
-
     border-radius: 12px;
-
     padding: 35px;
-
     position: relative;
-
     text-align: center;
 }
-
 .modal-icon {
     font-size: 45px;
 }
-
 .modal-content h2 {
     margin: 15px 0 8px;
 }
-
 #nomeFilmeCompra {
     color: #aaa;
-
     margin-bottom: 25px;
 }
-
 .fechar {
     position: absolute;
-
     right: 15px;
     top: 12px;
-
     border: none;
-
     background: transparent;
-
     color: white;
-
     font-size: 30px;
-
     cursor: pointer;
 }
-
 .ingressos-info {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     padding: 15px;
-
     background: #0c0c0c;
-
     border-radius: 6px;
-
     margin-bottom: 20px;
 }
-
 .ingressos-info strong {
     color: #5bd46d;
-
     font-size: 20px;
 }
-
 .btn-comprar {
     width: 100%;
-
     padding: 14px;
-
     background: #9a6545;
-
     color: white;
-
     border: none;
-
     border-radius: 5px;
-
     cursor: pointer;
-
     font-weight: bold;
 }
-
 .btn-comprar:hover {
     background: #70452f;
 }
-
-
-/* =========================
-   TRAILER
-========================= */
-
 .modal-trailer {
     width: 95%;
-
     max-width: 900px;
-
     background: #111;
-
     padding: 25px;
-
     border-radius: 10px;
-
     position: relative;
 }
-
 .modal-trailer h2 {
     margin-bottom: 20px;
 }
-
 .video-container {
     position: relative;
-
     width: 100%;
-
     padding-bottom: 56.25%;
-
     height: 0;
-
     overflow: hidden;
 }
-
 .video-container iframe {
     position: absolute;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     padding: 50px 7%;
-
     text-align: center;
-
     border-top: 1px solid #222;
-
     color: #777;
 }
-
 footer .logo {
     justify-content: center;
-
     margin-bottom: 10px;
-
     color: white;
 }
-
 .copyright {
     margin-top: 20px;
-
     font-size: 12px;
 }
-
-
-/* =========================
-   RESPONSIVO
-========================= */
-
 @media (max-width: 800px) {
-
     .header {
         padding: 0 5%;
     }
-
     .header nav {
         gap: 12px;
     }
-
     .header nav a {
         font-size: 12px;
     }
-
     .banner {
         min-height: 500px;
-
         padding: 50px 5%;
     }
-
     .section,
     .cadastro-section {
         padding: 60px 5%;
     }
-
     .cadastro-container {
         grid-template-columns: 1fr;
-
         gap: 40px;
     }
-
     .cadastro-info h2 {
         font-size: 32px;
     }
-
     .filmes-container {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-
         gap: 15px;
     }
-
-    .capa {
+    .disco-capa {
         height: 250px;
     }
-
     .filme-info {
         padding: 12px;
     }
-
     .filme-info h3 {
         font-size: 16px;
     }
-
     .botoes {
         grid-template-columns: 1fr;
     }
-
 }
-
-
 @media (max-width: 450px) {
-
     .logo {
         font-size: 20px;
     }
-
     .header nav a:first-child {
         display: none;
     }
-
     .filmes-container {
         grid-template-columns: 1fr;
     }
-
-    .capa {
+    .disco-capa {
         height: 400px;
     }
-
 }
-.form-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 450px) { .form-linha { grid-template-columns: 1fr; gap: 0; } }
+.form-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 450px) {
+    .form-linha {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+.artista {
+    color: #c49a78;
+    font-size: 13px;
+    margin: -4px 0 10px;
+}
+.preco-estoque {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-size: 13px;
+}
+.preco-estoque strong {
+    color: #e3c7ac;
+    font-size: 17px;
+}
+.preco-estoque .disponivel {
+    color: #8fc58b;
+}
+.preco-estoque .esgotado {
+    color: #c28b62;
+}
+.filme-info>.btn-ingresso {
+    width: 100%;
+}
+.estado-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    color: #999;
+}
+.estado-vazio>div {
+    font-size: 50px;
+    color: #c28b62;
+}
+.estado-vazio h3 {
+    color: white;
+    margin: 12px 0 8px;
+}
+.logo {
+    color: white;
+    text-decoration: none;
+}
+.logo span {
+    color: #c28b62;
+}
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    background: radial-gradient(ellipse at center, #211710 0%, #080706 62%, #030303 100%);
+    transition: opacity 850ms ease, visibility 850ms ease;
+}
+.intro-disco {
+    position: relative;
+    width: clamp(170px, 32vw, 250px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: repeating-radial-gradient(circle, #171514 0 3px, #282523 4px 5px, #111 6px 9px);
+    border: 1px solid #49382d;
+    box-shadow: 0 0 45px #9a654533, 0 20px 70px #000;
+    animation: disco-girando 2.2s linear infinite;
+}
+.intro-disco::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #dfc7ad;
+}
+.intro-disco span {
+    width: 32%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, #d2a77d, #9a6545 58%, #603b2a);
+    border: 5px solid #191310;
+}
+.intro p {
+    color: #eee2d5;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.intro p span {
+    color: #c28b62;
+}
+.intro--sair {
+    opacity: 0;
+    visibility: hidden;
+}
+.site-conteudo {
+    opacity: 0;
+    transform: translateY(18px) scale(.99);
+    transition: opacity 900ms ease, transform 900ms cubic-bezier(.2, .75, .25, 1);
+}
+body.site-pronto .site-conteudo {
+    opacity: 1;
+    transform: none;
+}
+@keyframes disco-girando {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .intro-disco {
+        animation: none;
+    }
+    .intro,
+    .site-conteudo {
+        transition-duration: 1ms;
+    }
+}
 
+<<<<<<< HEAD
 
 .artista { color: #c49a78; font-size: 13px; margin: -4px 0 10px; }
 .preco-estoque { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 14px; font-size: 13px; }
@@ -837,3 +684,15 @@ footer .logo {
 }
 .login-box h2 { margin: 8px 0 24px; }
 .mensagem-erro { color: #e07a5f; min-height: 20px; margin-bottom: 12px; font-size: 14px; }
+=======
+.disco-capa:hover {
+    animation: capa-disc-girando 4s linear infinite;
+}
+@keyframes capa-disc-girando {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .disco-capa:hover { animation: none; }
+}
+>>>>>>> 8414f44158acee0c7b7fbaf603e761579d9a7c33
