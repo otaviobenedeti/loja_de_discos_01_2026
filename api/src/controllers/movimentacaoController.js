@@ -21,12 +21,14 @@ async function registrar(req, res) {
       return res.status(400).json({ mensagem: "A observação pode ter no máximo 250 caracteres." });
     }
 
+    // Data no formato AAAA-MM-DD. Se não vier, usa a data de hoje.
     const texto = req.body.data_movimentacao || new Date().toISOString().slice(0, 10);
     const data_movimentacao = new Date(texto + "T00:00:00.000Z");
     if (!/^\d{4}-\d{2}-\d{2}$/.test(texto) || Number.isNaN(data_movimentacao.getTime())) {
       return res.status(400).json({ mensagem: "Data inválida. Use o formato AAAA-MM-DD." });
     }
 
+    // Tudo dentro da transação: se qualquer passo falhar, nada é salvo.
     const resultado = await prisma.$transaction(async (tx) => {
       const disco = await tx.disco.findUnique({ where: { id_disco } });
       if (!disco) {
@@ -59,6 +61,7 @@ async function registrar(req, res) {
 
     const { movimentacao, discoAtualizado } = resultado;
 
+    // Alerta só vale para saídas (RF007): o estoque ficou abaixo do mínimo?
     const estoqueBaixo =
       tipo === "saida" && discoAtualizado.quantidade_estoque < discoAtualizado.estoque_minimo;
 

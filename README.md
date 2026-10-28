@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Needle & Groove
 
 Sistema web para gerenciar o acervo, as vendas e as reposições de estoque de uma loja de discos de vinil (Simulado SAEP).
@@ -72,20 +71,3 @@ Todas, exceto o login, exigem o cabeçalho `Authorization: Bearer <token>`.
 - `src/routes/` — liga cada endereço da API ao controller certo.
 - `src/controllers/` — recebe a requisição, aplica as regras (validações, estoque, transação, login) e devolve a resposta.
   - `discoController.js` também tem a ordenação alfabética feita à mão (Insertion Sort), exigência do RF005.
-=======
-﻿# Needle & Groove
-
-**By Otávio e Francisco**
-
-## Sobre a loja
-
-A Needle & Groove é uma loja virtual de discos de vinil feita para quem gosta de música e quer descobrir álbuns marcantes. A página apresenta uma vitrine com capas, nomes dos álbuns, artistas, descrições, preços e disponibilidade em estoque.
-
-## Como funciona
-
-- **Explore o catálogo:** a vitrine mostra os discos disponíveis e indica quando um título está esgotado.
-- **Cadastre discos:** na seção “Cadastrar disco”, informe o nome do álbum, artista ou banda, descrição, URL da capa, preço e quantidade em estoque. Após o cadastro, o disco aparece na vitrine.
-- **Compre discos:** escolha um título disponível, informe a quantidade e confirme. A loja verifica o estoque, calcula o total e desconta as unidades compradas.
-- **Remova títulos:** cada disco pode ser excluído do catálogo pelo botão correspondente.
-- **Dados salvos no navegador:** o catálogo e as alterações ficam guardados no `localStorage` do navegador. Na primeira visita, são exibidos alguns discos de exemplo. Os dados não são compartilhados entre navegadores ou dispositivos.
->>>>>>> 8414f44158acee0c7b7fbaf603e761579d9a7c33

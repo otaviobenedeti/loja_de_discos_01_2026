@@ -1,3 +1,4 @@
+// Middleware que protege as rotas: só passa quem enviar um token válido.
 const jwt = require("jsonwebtoken");
 
 function verificarToken(req, res, next) {

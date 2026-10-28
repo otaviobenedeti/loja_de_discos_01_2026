@@ -1,7 +1,9 @@
+// Popula o banco com dados de exemplo. Rodar com: npm run seed
 const bcrypt = require("bcryptjs");
 const prisma = require("../src/config/prisma");
 
 async function main() {
+  // Limpa na ordem certa (movimentações dependem de disco e usuário).
   await prisma.movimentacaoEstoque.deleteMany();
   await prisma.disco.deleteMany();
   await prisma.usuario.deleteMany();

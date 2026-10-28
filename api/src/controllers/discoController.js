@@ -1,5 +1,6 @@
 const prisma = require("../config/prisma");
 
+// O Prisma devolve Decimal como objeto; aqui convertemos para número comum.
 function formatarDisco(disco) {
   return {
     id_disco: disco.id_disco,
@@ -13,10 +14,13 @@ function formatarDisco(disco) {
   };
 }
 
+// Deixa o texto em minúsculas e sem acentos para comparar corretamente.
 function normalizar(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
+// Ordenação alfabética por título feita "na mão" (Insertion Sort), como pede o RF005.
+// Não usa ORDER BY do banco nem .sort().
 function ordenarPorTitulo(discos) {
   const lista = [...discos];
 
@@ -34,6 +38,7 @@ function ordenarPorTitulo(discos) {
   return lista;
 }
 
+// Valida o corpo da requisição. Devolve { erro } se algo estiver errado, ou { dados } se estiver tudo certo.
 function lerDisco(body) {
   const titulo = String(body.titulo || "").trim();
   const artista = String(body.artista || "").trim();
